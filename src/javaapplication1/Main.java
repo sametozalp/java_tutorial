@@ -1,35 +1,27 @@
 package javaapplication1;
 
-import java.util.LinkedList;
-import java.util.ListIterator;
-
 public class Main {
-
-    public static void listeyiBastir(LinkedList<String> gidilecekYerler) {
-        ListIterator<String> iterator = gidilecekYerler.listIterator();
-
-        // sırada biri var mı
-        while (iterator.hasNext()) {
-            System.out.println(iterator.next());
-        }
-    }
-
     public static void main(String[] args) {
+        /*
+         * PcMuhendisi muhendis1 = new PcMuhendisi(false, false);
+         * // IMuhendis muhendis1 = new PcMuhendisi(false, false); AYNI KULLANIM
+         * 
+         * muhendis1.askerlikDurumSorgula();
+         * muhendis1.adliSicilSorgula();
+         * System.out.println(muhendis1.mezuniyetOrtalamasi(3.07));
+         * String[] tecrube = { "Vestel", "Havelsan", "Turksat" };
+         * muhendis1.isTecrubesi(tecrube);
+         */
+        // IMuhendis muhendis1 = new PcMuhendisi(false, false); AYNI KULLANIM
 
-        LinkedList<String> gidilecekYerler = new LinkedList<>();
-        gidilecekYerler.add("postane");
-        gidilecekYerler.add("market");
-        gidilecekYerler.add("Okul");
-        gidilecekYerler.add("Kütüphane");
-        gidilecekYerler.add("spor salonu");
-        gidilecekYerler.add("Ev");
-
-        listeyiBastir(gidilecekYerler);
-
-        // İŞLEMLERDE KAYDIRMA OLMUYOR SADECE REFERANSLAR DEĞİŞİYOR
-        gidilecekYerler.add(4, "Alışveriş merkezi");
-        gidilecekYerler.remove(3);
-
-        listeyiBastir(gidilecekYerler);
+        MakineMuhendisi muhendis2 = new MakineMuhendisi(true, false);
+        String[] tecrube = {};
+        String[] referans = { "Samet Özalp" };
+        muhendis2.askerlikDurumSorgula();
+        muhendis2.adliSicilSorgula();
+        System.out.println(muhendis2.mezuniyetOrtalamasi(2.31));
+        muhendis2.isTecrubesi(tecrube);
+        muhendis2.referansGetir(referans);
+        muhendis2.calis();
     }
 }
