@@ -1,20 +1,10 @@
 public class Matematik {
 
-    public class Factorial {
-        public void factorial() {
-            System.out.println("faktoriyel hesaplama");
-        }
-    }
+    private double PI = 3.14;
 
-    public class Asal {
-        public void asalMi() {
-            System.out.println("asal mi fonk calisiyor");
-        }
-    }
-
-    public class Alan {
+    public static class Alan {
         public void daireAlan() {
-            System.out.println("daire alan hesaplaniyor");
+            System.out.println("daire alan fonk");
         }
     }
 

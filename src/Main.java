@@ -1,15 +1,11 @@
 public class Main {
     public static void main(String[] args) {
 
-        // INNER CLASSES
+        //STATIC INNER CLASSES
 
-        Matematik.Factorial factorial = new Matematik().new Factorial();
-        Matematik.Asal asal = new Matematik().new Asal();
-        Matematik.Alan alan = new Matematik().new Alan();
+        Matematik.Alan alan = new Matematik.Alan();
 
-        asal.asalMi();
-        factorial.factorial();
         alan.daireAlan();
-
-    }
+        // Matematik.Alan.daireAlan(); // eğer fonk static olsaydı
+    } 
 }
