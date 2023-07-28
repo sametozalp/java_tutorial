@@ -1,29 +1,15 @@
 public class Main {
     public static void main(String[] args) {
-        /*
-         * Seyirci seyirci1 = new Seyirci("Samet Ozalp");
-         * Seyirci seyirci2 = new Seyirci("Ahmet Ozalp");
-         * 
-         * seyirci1.oyunIzle();
-         * seyirci2.oyunIzle();
-         * 
-         * System.out.println(Seyirci.getSeyirciSayisi()); // çalışmaz çünkü
-         * fonksiyon static değil
-         * System.out.println(seyirci1.getSeyirciSayisi());
-         * System.out.println(seyirci2.getSeyirciSayisi());
-         */
 
-        // STATIC OLMAK ZORUNDADIR NEDEN
-        // MAIN STATIC BIR FONKTUR YANI PROGRAM BASLADIĞI ANDA OLUSUR
-        // AMA SELAMLA METOTU STATIC OLMAZSA PROGRAM BASLADIGINDA OLUSMAZ
-        // YANI OLUSAN BIR METOTTAN OLUSMAYAN BIR METOT CAGIRIRSANIZ PROGRAM HATA VERIR
-        selamla();
+        // INNER CLASSES
 
-        //BU DURUMDA STATIC BIR METOTUN ICINDEN STATIC OLMAYAN BIR DEGISKEN DE CAGIRAMAYIZ
+        Matematik.Factorial factorial = new Matematik().new Factorial();
+        Matematik.Asal asal = new Matematik().new Asal();
+        Matematik.Alan alan = new Matematik().new Alan();
 
-    }
+        asal.asalMi();
+        factorial.factorial();
+        alan.daireAlan();
 
-    public static void selamla() {
-        System.out.println("Selamlar..");
     }
 }
