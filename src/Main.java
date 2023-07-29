@@ -1,82 +1,39 @@
 public class Main {
     public static void main(String[] args) {
 
-        // ANONIM INNER CLASSES
-        // interface ve abstract sınıfların metotlarına erişebilmek için anonim inner
-        // classları kullanıyoruz
-        // böylece herhangi bir class tanımlamasına gerek kalmıyor.
+        // GENERICS: (<E>) kullanımıyla verimlilik sağlar
 
-        IOgrenci ogrenci = new IOgrenci() {
+        Character[] charDizi = { 'J', 'A', 'V', 'A' };
+        Integer[] integerDizi = { 1, 2, 3, 4, 5, 6 };
+        String[] StringDizi = { "Java", "Python", "C++", "Php" };
+        Ogrenci[] ogrenciDizi = { new Ogrenci("Samet"), new Ogrenci("Ahmet"), new Ogrenci("Mehmet") };
+        /*
+         * CharYazdir.yazdir(charDizi);
+         * System.out.println("**********************");
+         * IntegerYazdir.yazdir(integerDizi);
+         * System.out.println("**********************");
+         * StringYazdir.yazdir(StringDizi);
+         * System.out.println("**********************");
+         * OgrenciYazdir.yazdir(ogrenciDizi);
+         */
 
-            @Override
-            public void dersCalis() {
-                System.out.println("ders calisiyorum");
-            }
+        YazdirmaSinifi<Character> yazdirChar = new YazdirmaSinifi<>();
+        YazdirmaSinifi<String> yazdirString = new YazdirmaSinifi<>();
+        YazdirmaSinifi<Integer> yazdirInteger = new YazdirmaSinifi<>();
+        YazdirmaSinifi<Ogrenci> yazdirOgrenci = new YazdirmaSinifi<>();
 
-            @Override
-            public void derseGir() {
-                System.out.println("derse giriyorum");
-            }
-
-        };
-        ogrenci.dersCalis();
-        ogrenci.derseGir();
-
-        System.out.println("*******************************");
-
-        AOgrenci aOgrenci = new AOgrenci("Samet Özalp", 171) {
-
-            @Override
-            void kayitYaptir() {
-                System.out.println("kayit yapiliyor.. " + "İsim: " + getIsim() + " Numara: " + getNumara());
-            }
-
-        };
-
-        aOgrenci.kayitYaptir();
-        aOgrenci.selamla();
-
-    }
-
-    // ABSTRACT SINIFINI STATIC YAPMAZSAK YUKARIDA KULLANAMAYIZ
-    // çünkü interface gibi değil içerisinde yazılmış metotlar bulunmakta
-    // kullanabilmek için static olarak tanımlamalıyız
-
-    public static abstract class AOgrenci {
-        private String isim;
-        private int numara;
-
-        public AOgrenci(String isim, int numara) {
-            this.isim = isim;
-            this.numara = numara;
-        }
-
-        abstract void kayitYaptir();
-
-        public void selamla() {
-            System.out.println("Selamlar..");
-        }
-
-        public String getIsim() {
-            return isim;
-        }
-
-        public void setIsim(String isim) {
-            this.isim = isim;
-        }
-
-        public int getNumara() {
-            return numara;
-        }
-
-        public void setNumara(int numara) {
-            this.numara = numara;
-        }
-    }
-
-    public interface IOgrenci {
-        void dersCalis();
-
-        void derseGir();
+        yazdirChar.yazdir(charDizi);
+        System.out.println("**********************");
+        yazdirString.yazdir(StringDizi);
+        System.out.println("**********************");
+        yazdirInteger.yazdir(integerDizi);
+        System.out.println("**********************");
+        yazdirOgrenci.yazdir(ogrenciDizi);
+        System.out.println("\n\n**********************");
+        System.out.println("Obje oluşturmadan kullanmak daha mantıklı");
+        System.out.println("**********************");
+        new YazdirmaSinifi<>().yazdir(charDizi);
+        new YazdirmaSinifi<>().yazdir(StringDizi);
+        new YazdirmaSinifi<>().yazdir(ogrenciDizi);
     }
 }
