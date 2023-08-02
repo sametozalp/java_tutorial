@@ -1,30 +1,32 @@
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Main {
     public static void main(String[] args) {
 
-        // HASHMAP
-        // Key and value
-        // Keyden sadece bir tane olabilir. birden fazla value olabilir.
-        // Elementleri ekleme sırasına göre depolamaz. (HashSet gibi)
-        // Map Collection interface'inden implement etmez.
+        Map<Integer, String> hashMap = new HashMap<>(); // karışık yazar
+        Map<Integer, String> linkedHashMap = new LinkedHashMap<>(); // sırasına göre yazar
+        Map<Integer, String> treeMap = new TreeMap<>(); // keylere göre sıralar
 
-        HashMap<Integer, String> hashMap = new HashMap<>();
+        yazdir(hashMap);
+        System.out.println("*****************************");
+        yazdir(linkedHashMap);
+        System.out.println("*****************************");
+        yazdir(treeMap);
 
-        hashMap.put(10, "Java");
-        hashMap.put(30, "Python");
-        hashMap.put(50, "Php");
-        hashMap.put(20, "Php");
-        hashMap.put(50, "JavaScript"); // üzerine yazar.
+    }
 
-        System.out.println(hashMap);
-        System.out.println(hashMap.get(50));
+    public static void yazdir(Map<Integer, String> map) {
+        map.put(10, "C++");
+        map.put(5, "Java");
+        map.put(1, "Python");
+        map.put(2, "Php");
+        map.put(100, "C");
 
-        // liste gibi alt alta yazdırmak
-        for (Map.Entry<Integer, String> entry : hashMap.entrySet()) {
-            System.out.println(entry.getKey() + " => " + entry.getValue());
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+            System.out.println("Key: " + entry.getKey() + " Value: " + entry.getValue());
         }
-
     }
 }
