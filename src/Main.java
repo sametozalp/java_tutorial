@@ -6,27 +6,11 @@ import java.util.TreeMap;
 public class Main {
     public static void main(String[] args) {
 
-        Map<Integer, String> hashMap = new HashMap<>(); // karışık yazar
-        Map<Integer, String> linkedHashMap = new LinkedHashMap<>(); // sırasına göre yazar
-        Map<Integer, String> treeMap = new TreeMap<>(); // keylere göre sıralar
-
-        yazdir(hashMap);
-        System.out.println("*****************************");
-        yazdir(linkedHashMap);
-        System.out.println("*****************************");
-        yazdir(treeMap);
-
+        // HashCode ve Equals metotları
+        // HashSete kendi objemizi oluşturup gönderirsek HashSet aynı key değerlerini
+        // depolamamasına rağmen bizim objemizi depolayacaktır. Sebebi ise kendi
+        // yazdığımız classımızda hashcode ve equals metotlarımızı override etmiyor
+        // olmamızdır. (Beraber override etmeliyiz.)
     }
 
-    public static void yazdir(Map<Integer, String> map) {
-        map.put(10, "C++");
-        map.put(5, "Java");
-        map.put(1, "Python");
-        map.put(2, "Php");
-        map.put(100, "C");
-
-        for (Map.Entry<Integer, String> entry : map.entrySet()) {
-            System.out.println("Key: " + entry.getKey() + " Value: " + entry.getValue());
-        }
-    }
 }
