@@ -1,133 +1,72 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.Enumeration;
+import java.util.ListIterator;
+import java.util.Stack;
+import java.util.Vector;
 
 public class Main {
     public static void main(String[] args) {
 
-        ArrayList<String> list = new ArrayList<>();
-        list.add("Java");
-        list.add("C++");
-        list.add("Python");
-        list.add("Php");
-        list.add("Go");
+        // VECTOR
 
-        Collections.sort(list, new BuyuktenKucugeString());
+        // synchronized: farklı threadler bir arraylist üzerinde uğraşıyorsa ve metot
+        // synchronized değilse threadler karışıklığa neden oluyor. Biz burda vector
+        // kullanırsak bir metot bir threadi çalıştırır ve karışıklığa neden olmaz.
 
-        for (String s : list) {
+        // Vectorler threadlerde oldukça güvenli fakat arraylistlere göre performansı
+        // yavaş.
+
+        Vector<String> vector = new Vector<>();
+
+        vector.add("Java");
+        vector.add("Python");
+        vector.add("Python");
+        vector.add("Php");
+
+        for (String s : vector) {
             System.out.println(s);
         }
 
-        System.out.println("**************************");
+        /***********************************************************/
 
-        ArrayList<Player> listPlayer = new ArrayList<>();
-        listPlayer.add(new Player("Java", 0));
-        listPlayer.add(new Player("C++", 2));
-        listPlayer.add(new Player("Python", 8));
-        listPlayer.add(new Player("Php", 22));
-        listPlayer.add(new Player("Go", 15));
+        ListIterator<String> iterator = vector.listIterator();
 
-        // Collections.sort(listPlayer, new KucuktenBuyugePlayer());
-        // Collections.sort(listPlayer, new BuyuktenKucugePlayer());
-        // Collections.sort(listPlayer, new KucuktenBuyugeStringPlayer());
-
-        // ANONIM CLASS ORNEGI!!
-        Collections.sort(listPlayer, new Comparator<Player>() {
-
-            @Override
-            public int compare(Player o1, Player o2) {
-                return -o1.getIsim().compareTo(o2.getIsim());
-            }
-
-        });
-
-        for (Player s : listPlayer) {
-            System.out.println(s.getIsim());
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
         }
 
-    }
-}
+        /************************************************************/
 
-class Player implements Comparable<Player> {
-    private String isim;
-    private int id;
+        Enumeration<String> enumeration = vector.elements();
 
-    public Player(String isim, int id) {
-        this.isim = isim;
-        this.id = id;
-    }
-
-    public String getIsim() {
-        return isim;
-    }
-
-    public void setIsim(String isim) {
-        this.isim = isim;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @Override
-    public int compareTo(Player player) {
-        if (this.id < player.id) {
-            return -1;
-        } else if (this.id > player.id) {
-            return 1;
+        while (enumeration.hasMoreElements()) {
+            System.out.println(enumeration.nextElement());
         }
-        return 0;
-    }
 
-}
+        System.out.println("İlk eleman: " + vector.firstElement());
+        System.out.println("Son eleman: " + vector.lastElement());
 
-class BuyuktenKucugeString implements Comparator<String> {
+        // STACK
+        Stack<String> stack = new Stack<>(); // Vectorden extend ediyor
 
-    @Override
-    public int compare(String o1, String o2) {
+        stack.push("Python"); // stack.add("Python");
+        stack.push("Java");
+        stack.push("Php");
+        stack.push("Go");
 
-        return -o1.compareTo(o2);
-    }
-
-}
-
-class KucuktenBuyugePlayer implements Comparator<Player> {
-
-    @Override
-    public int compare(Player o1, Player o2) {
-        if (o1.getId() < o2.getId()) {
-            return -1;
-        } else if (o1.getId() > o2.getId()) {
-            return 15;
+        for (String s : stack) {
+            System.out.println(s);
         }
-        return 0;
-    }
 
-}
+        // veya
 
-class BuyuktenKucugePlayer implements Comparator<Player> {
-
-    @Override
-    public int compare(Player o1, Player o2) {
-        if (o1.getId() > o2.getId()) {
-            return -1;
-        } else if (o1.getId() < o2.getId()) {
-            return 15;
+        Enumeration<String> enumeration2 = stack.elements();
+        while (enumeration2.hasMoreElements()) {
+            System.out.println(enumeration2.nextElement());
         }
-        return 0;
+
+        System.out.println(stack.peek()); // STACK'IN SON ELEMANINI ALIR
+        stack.pop(); // Son elemanı stackten çıkarır
+        
+
     }
-
-}
-
-class KucuktenBuyugeStringPlayer implements Comparator<Player> {
-
-    @Override
-    public int compare(Player o1, Player o2) {
-        return o1.getIsim().compareTo(o2.getIsim());
-    }
-
 }
