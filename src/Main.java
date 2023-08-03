@@ -1,72 +1,36 @@
-import java.util.Enumeration;
-import java.util.ListIterator;
-import java.util.Stack;
-import java.util.Vector;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Main {
     public static void main(String[] args) {
 
-        // VECTOR
+        // QUEUE: KUYRUK (Interface)
+        // Linkedlist ve PriorityQueue bu interfaceden implement eden somut
+        // classlardır.
+        // Kuyruğa ilk giren ilk çıkar. (Stack'in zıttı.)
+        // offer add'den daha güvenli bir metot (eleman ekler).
+        // remove() => kuyruğun en başındaki eleman kuyruktan çıkar. kuyruk boşsa hata
+        // verir.
+        // poll() => kuyruğun en başındaki eleman kuyruktan çıkar. kuyruk boşsa null
+        // döner.
+        // element() => kuyruğun en başındaki elemanı döner. kuyruk boşsa hata fırlatır.
+        // peek() => kuyruğun en başındaki elemanı döner. kuyruk boşsa null döner.
 
-        // synchronized: farklı threadler bir arraylist üzerinde uğraşıyorsa ve metot
-        // synchronized değilse threadler karışıklığa neden oluyor. Biz burda vector
-        // kullanırsak bir metot bir threadi çalıştırır ve karışıklığa neden olmaz.
+        Queue<String> queue = new LinkedList<>();
+        queue.offer("Java");
+        queue.offer("Python");
+        queue.offer("Php");
+        queue.offer("C++");
 
-        // Vectorler threadlerde oldukça güvenli fakat arraylistlere göre performansı
-        // yavaş.
+        System.out.println(queue.peek()); // kuyruğun en başındaki eleman
+        System.out.println(queue.poll()); // kuyruğun en başındaki elemanı siler
 
-        Vector<String> vector = new Vector<>();
+        System.out.println("***************************");
 
-        vector.add("Java");
-        vector.add("Python");
-        vector.add("Python");
-        vector.add("Php");
-
-        for (String s : vector) {
+        for (String s : queue) {
             System.out.println(s);
         }
 
-        /***********************************************************/
-
-        ListIterator<String> iterator = vector.listIterator();
-
-        while (iterator.hasNext()) {
-            System.out.println(iterator.next());
-        }
-
-        /************************************************************/
-
-        Enumeration<String> enumeration = vector.elements();
-
-        while (enumeration.hasMoreElements()) {
-            System.out.println(enumeration.nextElement());
-        }
-
-        System.out.println("İlk eleman: " + vector.firstElement());
-        System.out.println("Son eleman: " + vector.lastElement());
-
-        // STACK
-        Stack<String> stack = new Stack<>(); // Vectorden extend ediyor
-
-        stack.push("Python"); // stack.add("Python");
-        stack.push("Java");
-        stack.push("Php");
-        stack.push("Go");
-
-        for (String s : stack) {
-            System.out.println(s);
-        }
-
-        // veya
-
-        Enumeration<String> enumeration2 = stack.elements();
-        while (enumeration2.hasMoreElements()) {
-            System.out.println(enumeration2.nextElement());
-        }
-
-        System.out.println(stack.peek()); // STACK'IN SON ELEMANINI ALIR
-        stack.pop(); // Son elemanı stackten çıkarır
         
-
     }
 }
