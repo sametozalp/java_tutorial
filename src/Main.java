@@ -1,92 +1,81 @@
-import java.util.PriorityQueue;
-import java.util.Queue;
-
-import javax.xml.transform.Source;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
 
-        // PriorityQueue
+        // LISTITERATOR AND ITERATOR
 
-        // PriorityQueue, queue mantığu gibi çalışmaz. Elemanlar öncelik sırasına göre
-        // öncelik kazanıp sıraya geçiyor.
+        /*
+         * Listiterator, SADECE List interfacesi implement eden classlarda kullanılır.
+         * next() ve previous() metotları vardır.
+         * ekstradan add() metotu bulunuur.
+         * 
+         * Iterator, set, queue, ve list interfacesi implement eden classlarda
+         * kullanılır.
+         * previous() metotu yoktur.
+         */
 
-        // Integerlarda öncelik: küçük sayıdan büyük sayıya.
-        // Stringlerde öncelik: sözlük sırası (alfabetik).
+        Set<String> set = new HashSet<>();
+        List<String> list = new ArrayList<>();
+        set.add("Java");
+        set.add("Python");
+        set.add("C++");
+        set.add("Go");
 
-        // add() - offer()
-        // clear()
-        // constains(Object o)
-        // peek()
-        // poll()
-        // size()
+        list.add("Java");
+        list.add("Python");
+        list.add("C++");
+        list.add("Go");
 
-        Queue<Integer> queue = new PriorityQueue<>();
-        queue.offer(5);
-        queue.offer(1);
-        queue.offer(2);
-        queue.offer(100);
-
-        System.out.println(queue.peek()); // kuyruğun en başındaki eleman
-
-        // BİZ BUNLARI BASTIRIRKEN ÖNCELİK SIRASINA GÖRE GÖREMİYORUZ FAKAT ÖNCELİK
-        // SIRASINA GÖRE SIRALI OLDUĞUNU BİLMEMİZ GEREKİYOR.
-
-        while (!queue.isEmpty()) {
-            System.out.println("Eleman çıkarılıyor: " + queue.poll());
+        Iterator<String> iterator1 = set.iterator();
+        Iterator<String> iterator2 = list.iterator();
+        while (iterator1.hasNext()) {
+            System.out.println(iterator1.next());
         }
 
-        // KENDİ OBJENİ SIRALA
-        Queue<Player> players = new PriorityQueue<>();
-        players.offer(new Player("Samet", 5));
-        players.offer(new Player("Mehmet", 1));
-        players.offer(new Player("Ahmet", 100));
+        System.out.println("*********************");
 
-        while (!players.isEmpty()) {
-            System.out.println("Eleman çıkarılıyor: " + players.poll());
+        while (iterator2.hasNext()) {
+            System.out.println(iterator2.next());
+        }
+
+        System.out.println("*****ITERATOR EN SONA GELDIGI ICIN BUNDAN SONRAKI WHILE DONGUSU CALISMIYOR*******");
+        // ITERATOR EN SONA GELDIGI ICIN BUNDAN SONRAKI WHILE DONGUSU CALISMIYOR
+        while (iterator2.hasNext()) {
+            System.out.println(iterator2.next());
+        }
+
+        System.out.println("*********************");
+
+        /*****************************************************/
+
+        List<String> list2 = new ArrayList<>();
+        list2.add("Java");
+        list2.add("Python");
+        list2.add("C++");
+        list2.add("Go");
+
+        ListIterator<String> listIterator = list.listIterator();
+        while (listIterator.hasNext()) {
+            System.out.println(listIterator.next());
+        }
+        // tersten yazdı
+        while (listIterator.hasPrevious()) {
+            System.out.println(listIterator.previous());
+        }
+
+        // "Go" üzerine gelince sil
+        while (listIterator.hasNext()) {
+            String value = listIterator.next();
+            if(value.equals("Go")) {
+                listIterator.remove();
+            }
         }
 
     }
-}
-
-class Player implements Comparable<Player> {
-    private String isim;
-    private int id;
-
-    public Player(String isim, int id) {
-        this.isim = isim;
-        this.id = id;
-    }
-
-    public String getIsim() {
-        return isim;
-    }
-
-    public void setIsim(String isim) {
-        this.isim = isim;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @Override
-    public int compareTo(Player player) {
-        if (this.id < player.id) {
-            return -1;
-        } else if (this.id > player.id) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public String toString() {
-        return "Player [isim=" + isim + ", id=" + id + "]";
-    }
-
 }
