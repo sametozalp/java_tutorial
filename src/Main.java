@@ -1,40 +1,39 @@
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class Main {
     public static void main(String[] args) {
 
-        // I / O
+        FileOutputStream fos = null;
+        // File file = new File("dosya.txt");
+        try {
 
-        // Stream: verilerin input output yoluyla java projelerine aktığı bir veri
-        // dizisidir.
+            // burdaki true değeri SetOptions.merge ile aynı mantık çalışır
+            fos = new FileOutputStream("dosya.txt", true);
 
-        /*
-         * System.out: Standart output stream.
-         * System.err: Standart error stream.
-         * System.in: Standart input stream.
-         */
+            // fos.write(65); harf yazar
 
-        /*
-         * OutputStream
-         * Java uygulamaları bir dosyaya, bir sockete ve bağlanmış bir aygıta veriyi
-         * stream halinde yazmak için OutputStream abstract classından türeyen bir alt
-         * sınıfı kullanır.
-         * 
-         * write() metodu: Belli bir btye dizisini veya tek bir byte'ı hedefe yazar.
-         * flush() metodu: Herhangi bir bufferlanmış veri varsa bu metot sayesinde hemen
-         * hedefe yazılmasını söylemiş oluyoruz.
-         * close() metodu: OutpuStream'i kapatır.
-         */
+            //byte[] array = { 101, 75, 75, 66, 68 };
+            //fos.write(array); // harfler olarak yazar
 
-        /*
-         * InputStream
-         * Java uygulamaları bir dosyadan, bir socketten ve bağlanmış bir aygıttan
-         * veriyi Stream halinde okumak için InputStream absract classından türeyen bir
-         * alt sınıfı kullanır.
-         * 
-         * read() metodu: Kaynaktan bir sonraki byte'ı okur. Okuyacak herhangi bir byte
-         * yoksa -1 değeri döner.
-         * available() metodu: Okunabilecek byte sayısını döner.
-         * close() metodu: InputStream'i kapatır.
-         */
+            String s = "Samet Özalp";
+            fos.write(s.getBytes());
+
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
 
     }
 }
