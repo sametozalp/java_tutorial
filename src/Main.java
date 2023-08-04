@@ -1,24 +1,54 @@
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
 
-        FileOutputStream fos = null;
-        // File file = new File("dosya.txt");
+        FileInputStream fis = null;
         try {
+            fis = new FileInputStream("dosya.txt");
+            /*
+             * // cast etmezsen ascii değerini getirir.
+             * 
+             * System.out.println((char) fis.read()); // J
+             * System.out.println((char) fis.read()); // a
+             * System.out.println((char) fis.read()); // v
+             * 
+             * // İmleç her seferinde ilerliyor.
+             */
+            /*
+             * fis.skip(5); // imleç 5 kez hareket eder.
+             * 
+             * System.out.println((char)fis.read()); // P
+             * System.out.println((char) fis.read()); // r
+             */
 
-            // burdaki true değeri SetOptions.merge ile aynı mantık çalışır
-            fos = new FileOutputStream("dosya.txt", true);
+            /*
+             * // Dosyanın tamamını okumak
+             * int deger;
+             * String s = "";
+             * 
+             * while ((deger = fis.read()) != -1) {
+             * s += (char) deger;
+             * }
+             * 
+             * System.out.println("Dosya içeriği: " + s);
+             */
 
-            // fos.write(65); harf yazar
+            int deger;
+            String s = "";
+            int say = 0;
 
-            //byte[] array = { 101, 75, 75, 66, 68 };
-            //fos.write(array); // harfler olarak yazar
-
-            String s = "Samet Özalp";
-            fos.write(s.getBytes());
+            fis.skip(5);
+            while ((deger = fis.read()) != -1) {
+                s += (char) deger;
+                say++;
+                if (say == 10) {
+                    break;
+                }
+            }
+            System.out.println("Dosyanın 5. yerinden itibaren 10 karakter: " + s);
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
@@ -28,7 +58,8 @@ public class Main {
             e.printStackTrace();
         } finally {
             try {
-                fos.close();
+                if (fis != null)
+                    fis.close();
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
