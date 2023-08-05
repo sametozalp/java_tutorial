@@ -10,8 +10,12 @@ public class Ogrenci implements Serializable {
     // cihazda eski bir sürüme entegre etmeye çalışıldığında hata versin ve güvenlik
     // açığı oluşmasın.
 
+    // Her özelliği serileştirmek zorunda değiliz. Gereksiz özellikleri
+    // serileştirmek dosya boyutunu çok fazla arttırabilir.
+
     private String isim;
-    private int id;
+    private transient int id; // serileştirmemesini istedik. Dolayısıyla okumaya çalışırsak id 0 olarak
+                              // başlar.
     private String bolum;
 
     public Ogrenci(String isim, int id, String bolum) {
