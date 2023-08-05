@@ -21,6 +21,8 @@ public class ObjeyiOku {
                 System.out.println("********************");
             }
             System.out.println("********************");
+
+            System.out.println("Öğrenci Sayısı: " + Ogrenci.getOgrenciSayisi());
         } catch (Exception e) {
             e.printStackTrace();
         }

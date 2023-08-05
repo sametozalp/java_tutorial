@@ -17,6 +17,9 @@ public class Ogrenci implements Serializable {
     private transient int id; // serileştirmemesini istedik. Dolayısıyla okumaya çalışırsak id 0 olarak
                               // başlar.
     private String bolum;
+    private static int ogrenciSayisi = 0; // Static ile tanımlanılan özellik serileştirilmiyor. 
+
+    
 
     public Ogrenci(String isim, int id, String bolum) {
         this.isim = isim;
@@ -55,6 +58,14 @@ public class Ogrenci implements Serializable {
                 + "\nÖğrenci Bölüm: " + bolum;
 
         return bilgiler;
+    }
+
+    public static int getOgrenciSayisi() {
+        return ogrenciSayisi;
+    }
+
+    public static void setOgrenciSayisi(int ogrenciSayisi) {
+        Ogrenci.ogrenciSayisi = ogrenciSayisi;
     }
 
 }

@@ -17,6 +17,8 @@ public class ObjeyiYaz {
 
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("ogrenciler.bin"))) {
 
+            Ogrenci.setOgrenciSayisi(100);
+
             out.writeObject(ogrenciArray);
             out.writeObject(ogrenciList);
 
