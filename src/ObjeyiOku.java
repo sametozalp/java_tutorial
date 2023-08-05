@@ -1,19 +1,26 @@
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 
 public class ObjeyiOku {
     public static void main(String[] args) {
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("ogrenci.bin"))) {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("ogrenciler.bin"))) {
 
-            // Objeleri sırasıyla almalıyız, almazsak objeler birbirine karışıyor.
+            Ogrenci[] ogrenciArray = (Ogrenci[]) in.readObject();
+            ArrayList<Ogrenci> ogrenciList = (ArrayList<Ogrenci>) in.readObject();
 
-            Ogrenci ogrenci = (Ogrenci) in.readObject();
-            Ogrenci ogrenci2 = (Ogrenci) in.readObject();
+            System.out.println("********************");
+            for (Ogrenci o : ogrenciArray) {
+                System.out.println(o);
+                System.out.println("********************");
+            }
+            System.out.println("********************");
 
-            System.out.println("******************");
-            System.out.println(ogrenci);
-            System.out.println(ogrenci2);
-
+            for (Ogrenci o : ogrenciList) {
+                System.out.println(o);
+                System.out.println("********************");
+            }
+            System.out.println("********************");
         } catch (Exception e) {
             e.printStackTrace();
         }

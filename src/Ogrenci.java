@@ -5,7 +5,7 @@ public class Ogrenci implements Serializable {
     // Serializable içerisinde herhangi bir metot bulunmaz. Sadece javaya
     // serileştireceğimizi bildiririz.
 
-    private static final long serialVersionUid = 1000;
+    // private static final long serialVersionUid = 1000;
     // classı değiştirdiğinde bu şekilde bir güvenlik atamalısın ki başka bir
     // cihazda eski bir sürüme entegre etmeye çalışıldığında hata versin ve güvenlik
     // açığı oluşmasın.

@@ -1,29 +1,24 @@
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ObjeyiYaz {
     public static void main(String[] args) {
 
-        // Serialization: Objelerin serileştirilmesi
+        // Serialization: Array ve Collention'ların serileştirilmesi
 
-        /*
-         * Avantaj:
-         * Oyunu kaydettin kapatıp açınca bu sayede tutabilirsin.
-         * Mesaj göndereceksin bu durumda state'i tutar karşı tarafa paslarsın
-         * (veritabanı aracılığıyla)
-         * Uzun bir işlemi bir kez yapar serilieştirdikten sonra her seferinde aynı
-         * işlemi yapmaktan kurtuluruz.
-         */
+        Ogrenci ogrenci = new Ogrenci("Samet", 12456498, "Bilgisayar Mühendisliği");
+        Ogrenci ogrenci2 = new Ogrenci("Oğuz", 45789456, "Finansal Matematik");
+        Ogrenci ogrenci3 = new Ogrenci("Mehmet", 65484531, "Bilgisayar Mühendisliği");
 
-        // ObjectOutputStream, objeyi serileştirmek için kullanılır.
-        // .bin, dosyanın binary (byte) şeklinde oluştuğunu gösterir.
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("ogrenci.bin"))) {
+        Ogrenci[] ogrenciArray = { ogrenci, ogrenci2, ogrenci3 };
+        ArrayList<Ogrenci> ogrenciList = new ArrayList<>(Arrays.asList(ogrenciArray));
 
-            Ogrenci ogrenci = new Ogrenci("Samet", 12456498, "Bilgisayar Mühendisliği");
-            Ogrenci ogrenci2 = new Ogrenci("Oğuz", 45789456, "Finansal Matematik");
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("ogrenciler.bin"))) {
 
-            out.writeObject(ogrenci);
-            out.writeObject(ogrenci2);
+            out.writeObject(ogrenciArray);
+            out.writeObject(ogrenciList);
 
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
