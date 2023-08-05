@@ -1,22 +1,29 @@
-import java.io.FileWriter;
+import java.io.FileReader;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        // Try With Resource
-        // Gereksiz try-catch kullanımını kaldırır.
-        // Program sonunda kapatmamız gereken kaynakları kendiliğinden kapatır.
-        // Java 7 ile gelmiştir.
+        // tryWithResources
+        try (FileReader reader = new FileReader("ogrenciler.txt");
+                Scanner scanner = new Scanner(reader)) {
 
-        //Birden fazla dosya açmak istersek..
-        try (FileWriter writer = new FileWriter("dosya.txt");
-                FileWriter writer2 = new FileWriter("dosya2.txt")) {
+            // Scanner(System.in) => konsoldan alır
+            // Scanner(new FileReader("ogrenciler.txt")) => dosyadan alır
 
-            writer.write("deneme");
+            while (scanner.hasNextLine()) {
+                //System.out.println("Okunan Satır: " + scanner.nextLine());
+
+                String ogrenciBilgisi = scanner.nextLine();
+                String[] array = ogrenciBilgisi.split(",");
+                if(array[1].equals(" " + "Bilgisayar Mühendisliği")){
+                    System.out.println("Öğrenci bilgisi: " + ogrenciBilgisi);
+                }
+                
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }
