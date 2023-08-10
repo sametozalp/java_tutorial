@@ -1,38 +1,18 @@
 public class Main {
     public static void main(String[] args) {
 
-        // ArrayBlockingQueue
+        // Database
 
-        ProducerConsumer pc = new ProducerConsumer();
+        // JDBC
+        // Java ile database'e bağlanmamızı sağlayan araçtır. JDBC driver sayesinde
+        // veritabanlarına bağlanmamızı sağlar. JDBC driver farklı veritabanlarına göre
+        // gerekli fonksiyon çağrılarını gerçekleştirir.
 
-        Thread producer = new Thread(new Runnable() {
+        // Xampp
+        // MySQL, php gibi araçları çalıştıran bir server.
 
-            @Override
-            public void run() {
-                pc.produce();
-            }
-
-        });
-
-        Thread consumer = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                pc.consume();
-            }
-
-        });
-
-        producer.start();
-        consumer.start();
-
-        try {
-            producer.join();    
-            consumer.join();
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        Baglanti baglanti = new Baglanti();
+        baglanti.calisanlariGetir();
 
     }
 }
